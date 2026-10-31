@@ -27,7 +27,6 @@
    ;; Dereference the atom using @ to read its current state
    :body (page-layout "Clojure & htmx App" "Home Page")})
 
-;; Router block (Kept exactly the same as your working setup)
 (def app-routes
   (ring/ring-handler
    (ring/router
