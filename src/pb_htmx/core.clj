@@ -9,8 +9,6 @@
 
 (defonce counter-state (atom 0))
 
-;; FIX 1: Wrap Hiccup output in raw-string container or cast explicitly 
-;; so that it outputs a clean, well-formed HTML wrapper string.
 (defn layout [title content]
   (str
    (h/html
@@ -30,27 +28,19 @@
 (defn home-handler [request]
   {:status 200
    :headers {"Content-Type" "text/html"}
-   :body (layout "Clojure & htmx App" "Home Pageeee")})
+   :body (layout "Clojure & htmx App" "Home Page")})
 
-;; FIX 2: Define your router inside an anonymous function or use a function wrapper.
-;; This ensures Reitit rebuilds the routing table using updated Var references 
-;; every single time a request comes in during development.
-(defn app-routes [request]
-  ((ring/ring-handler
-    (ring/router
-     [""
-      ["/" {:get home-handler}]
-      ;; FIX 3: Reitit looks inside your "resources" folder by default. 
-      ;; Changing path to "public" matches /resources/public/*
-      ["/public/*" (ring/create-resource-handler {:root "public"})]]
-     {:data {:middleware [parameters-middleware]}})
-    (ring/create-default-handler))
-   request))
+(def app-routes
+  (ring/ring-handler
+   (ring/router
+    [""
+     ["/" {:get home-handler}]
+     ["/public/*" (ring/create-resource-handler {:root "public"})]]
+    {:data {:middleware [parameters-middleware]}})
+   (ring/create-default-handler)))
 
-;; Use Var indirection (#'app-routes) inside wrap-reload so Clojure doesn't cache the old handler pointer
 (def app (wrap-reload #'app-routes))
 
-;; FIX 4: Track the running server instance in an atom so we don't accidentally leak background ports
 (defonce server (atom nil))
 
 (defn stop-server []
