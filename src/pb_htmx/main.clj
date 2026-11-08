@@ -1,4 +1,4 @@
-(ns pb-htmx.core
+(ns pb-htmx.main
   (:require [ring.adapter.jetty :refer [run-jetty]]
             [pb-htmx.app :refer [app]])
   (:gen-class))
