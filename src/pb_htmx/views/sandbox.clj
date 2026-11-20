@@ -10,7 +10,7 @@
    [:nav#navbar
     [:ul
      [:li [:button#close-sidebar-button {:onclick "closeSidebar()"} "X"]]
-     [:li.home-li [:a.active-link {:href ""} "Homeee"]]
+     [:li.home-li [:a.active-link {:href ""} "Home"]]
      [:li [:a {:href ""} "Calendar"]]
      [:li [:a {:href ""} "Dashboard"]]
      [:li [:a.accent-link {:href ""} "ATP"]]]]
