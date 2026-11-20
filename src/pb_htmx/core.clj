@@ -1,8 +1,7 @@
-(ns pb-htmx.main
+(ns pb-htmx.core
   (:require [ring.adapter.jetty :refer [run-jetty]]
             [pb-htmx.app :refer [app]])
   (:gen-class))
-
 
 (defonce server (atom nil))
 
@@ -19,4 +18,9 @@
 
 (defn -main [& args]
   (start-server))
+
+(comment
+  (-main)
+  ;_
+  )
 
