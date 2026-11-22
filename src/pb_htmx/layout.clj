@@ -38,7 +38,9 @@
       [:link {:rel "preconnect" :href "https://fonts.gstatic.com" :crossorigin ""}]
       [:link {:rel "stylesheet"
               :href "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"}]
-      [:link {:rel "stylesheet" :href "/public/css/styles.css"}]
+      [:link {:rel "stylesheet"
+        :href (str "/public/css/styles.css")}]
+
       [:script {:src "/public/htmx.min.js"}]
       [:script {:src "/public/script.js" :defer "true"}]]
      [:body
