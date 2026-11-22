@@ -1,107 +1,45 @@
 :root {
-    --primary-bg-color: green;
-    
+    --primary-bg-color: #ffffff;
     --divider-color: #dce0e8;
 }
 
 body {
-    background-color: lightBlue;
+    background-color: var(--primary-bg-color);
     border: none;
-    margin: 0;
-}
-
-.app {
-    display: flex;
-    flex-direction: column;
-}
-
-.top {
-    display: flex;
-    flex-direction: column;
-    position: sticky;
-    top: 0;
-}
-
-.active {
-    color: white;
-    text-decoration: underline;
-}
-
-.container {
-    display: flex;
-    justify-content: space-around;
+    margin: 0
 }
 
 .appHeader {
     color: black;
     background-color: gray;
     height: 40px;
-    padding: 0px 12px;
+    padding: 12px;
     display: flex;
+    font-size: 1.25rem;
     justify-content: space-between;
     align-items: center;
 }
 
-.appHeader img {
-    height: 80%;
-}
-
-.navMenu
-{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 30%;   
-}
-
-.altNavMenu {
-    display: flex;
-    gap: 8px;
-    justify-content: space-around;
-    align-items: center;
-    width: 20%;
+header.appHeader img {
     height: 100%;
+    object-fit: contain;
 }
 
-.altNavMenu .user {
-    height: 100%;
+.navMenu {
     display: flex;
-    justify-content: flex-end;
-    gap: 24px;
+    gap: 36px;
+}
+
+.navMenu .active {
+    color: white;
+    text-decoration: underline;
+}
+
+.userMenu {
+    display: flex;
     align-items: center;
-}
-
-.altNavMenu .icons {
-    height: 100%;
-    width: 40%;
-    display: flex;
-    justify-content: flex-end;
-    gap: 24px;
-    align-items: center;
-}
-
-.subHeader {
-    display: flex;
-    justify-content: flex-start;
-    height: 70px;
-    position: relative;
-    margin: 0px 0;
-    align-items: center;
-    padding-left: 36px;
-    background-color: white;
-}
-
-section {
-    display: flex;
-    justify-content: space-around;
-}
-
-#home section {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    flex-basis: 100%;
-    border-right: 1px solid var(--divider-color);
+    height: 60%;
+    gap: 12px;
 }
 
 .button-container {
@@ -121,14 +59,3 @@ section {
     border-radius: 20px;
 }
 
-article:nth-child(2) {
-    border-right: 1px solid var(--divider-color);
-    border-left: 1px solid var(--divider-color);
-}
-
-article {
-    display: flex;
-    justify-content: space-around;
-    background-color: white;
-    flex-grow: 1;
-}

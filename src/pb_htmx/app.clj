@@ -23,11 +23,6 @@
     (when-let [response (handler request)]
       (r/ok-html (layout views title response)))))
 
-(defn wrap-index [handler title]
-  (fn [request]
-    (when-let [response (handler request)]
-      (r/ok-html (index title response)))))
-
 (def app-routes
   (ring/ring-handler
    (ring/router
@@ -35,7 +30,7 @@
      ["/" {:get home
            :middleware [[wrap-layout "Home"]]}]
      ["/sandbox" {:get sandbox
-                  :middleware [[wrap-index "Sandbox"]]
+                  :middleware [[wrap-layout "Sandbox"]]
                 }]
      ["/calendar" {:get calendar
                    :middleware [[wrap-layout "Calendar"]]}]

@@ -20,4 +20,8 @@
 (defn sandbox [_]
   (h/html
    [:header
-    (navbar)]))
+    (navbar)]
+
+    [:section.pico
+     [:button "Section > div"]]
+    ))
