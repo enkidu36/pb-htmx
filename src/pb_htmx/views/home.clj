@@ -1,3 +1,15 @@
+(ns pb-htmx.views.home
+  (:require
+   [hiccup2.core :as h]))
+
+(def training-links
+   ["Boost your threshold"
+    "Base Training"
+    "Ride 100 Miles"
+    "Virtual Training Racing"
+    "Cyclocross"
+    "Weight Training"]  )
+
 (defn info-section []
   [:section#home-info
    [:h3 "Training Plans"]
@@ -13,6 +25,7 @@
 
 (defn home [request]
   [:div#home.container
+   [:header "Athlete: Joseph Savoie"]
    (info-section)
    [:section#todays-training
     [:h3 "Today's Training"]

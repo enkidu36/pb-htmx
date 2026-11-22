@@ -74,9 +74,6 @@ header.appHeader img {
 .navMenu {
     display: flex;
     gap: 36px;
-}
-
-.navMenu > div {
     cursor: pointer;
 }
 
@@ -84,7 +81,7 @@ header.appHeader img {
     color: white;
     font-weight: 600;
     text-decoration: underline;
-    text-underline-offset: 4px;
+    text-underline-offset: 8px;
 }
 
 .userMenu {
@@ -93,14 +90,18 @@ header.appHeader img {
     height: 60%;
     gap: 12px;
     font-size: 0.9375rem;
+    cursor: pointer;
 }
 
 /* Main Dashboard Grid */
 #home.container {
     display: grid;
-    grid-template-columns: 320px 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+	"head head head"
+	"info training performance";
     gap: 20px;
-    padding: 20px;
+    padding: 20px 0;
     max-width: 1440px;
     margin: 0 auto;
     box-sizing: border-box;
@@ -111,6 +112,10 @@ header.appHeader img {
     border: 1px solid var(--divider-color);
     border-radius: 8px;
     padding: 16px;
+}
+
+#home.container > header {
+    grid-area: head
 }
 
 /* Section Typography */
@@ -137,15 +142,24 @@ header.appHeader img {
     margin: 0;
 }
 
-/* Left Sidebar / Info Section */
+/* Info Section */
 #home-info {
-    width: 100%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: stretch;
     gap: 12px;
+    grid-area: info;
+}
+
+/* Home today's training section */
+#home.container > section#todays-training {
+    grid-area: training;
+}
+
+/* Home Performance section */
+#home.container > #performance {
+    grid-area: performance;
 }
 
 .button-container {
