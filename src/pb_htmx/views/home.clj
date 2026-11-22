@@ -32,4 +32,5 @@
     [:hr]]
    [:section#performance.performance-section
     [:h3 "Performance"]
-    [:hr]]])
+    [:hr]
+    [:canvas#my-canvas {:width "300px" :height "300px"}]]])
