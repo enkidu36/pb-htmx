@@ -1,21 +1,67 @@
 :root {
+    /* Colors */
     --primary-bg-color: #ffffff;
     --divider-color: #dce0e8;
+
+    /* Typography */
+    --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-data: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
     background-color: var(--primary-bg-color);
+    font-family: var(--font-ui);
     border: none;
-    margin: 0
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
 }
 
+/* Telemetry, Charts & Tables */
+table,
+.metric-card,
+.chart-container,
+.performance-section,
+.training-metrics {
+    font-family: var(--font-data);
+    font-variant-numeric: tabular-nums;
+}
+
+th {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+td {
+    font-size: 0.875rem;
+    font-weight: 400;
+}
+
+/* Form controls don't inherit body font by default */
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+hr {
+    width: 100%;
+    border: none;
+    border-top: 1px solid var(--divider-color);
+    margin: 0;
+}
+
+/* Header & Navigation */
 .appHeader {
     color: black;
     background-color: gray;
     height: 40px;
     padding: 12px;
     display: flex;
-    font-size: 1.25rem;
+    font-size: 1.125rem;
+    font-weight: 500;
     justify-content: space-between;
     align-items: center;
 }
@@ -30,9 +76,15 @@ header.appHeader img {
     gap: 36px;
 }
 
+.navMenu > div {
+    cursor: pointer;
+}
+
 .navMenu .active {
     color: white;
+    font-weight: 600;
     text-decoration: underline;
+    text-underline-offset: 4px;
 }
 
 .userMenu {
@@ -40,22 +92,87 @@ header.appHeader img {
     align-items: center;
     height: 60%;
     gap: 12px;
+    font-size: 0.9375rem;
+}
+
+/* Main Dashboard Grid */
+#home.container {
+    display: grid;
+    grid-template-columns: 320px 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1440px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+#home.container > section {
+    background-color: #ffffff;
+    border: 1px solid var(--divider-color);
+    border-radius: 8px;
+    padding: 16px;
+}
+
+/* Section Typography */
+#home h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+#home h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #4b5563;
+    margin: 8px 0 0 0;
+}
+
+.section-subtitle {
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: #374151;
+    margin: 0;
+}
+
+/* Left Sidebar / Info Section */
+#home-info {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 12px;
 }
 
 .button-container {
     display: flex;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    gap: 4px;
-    margin: 4px;
 }
 
 .smallButtons {
-    padding: 2px 26px;
-    font-size: 13px;
-    height: 26px;
-    max-height: 26px;
-    min-height: 26px;
-    background-color: white;
+    padding: 6px 14px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    background-color: #f9fafb;
+    border: 1px solid var(--divider-color);
     border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
+.smallButtons:hover {
+    background-color: #f3f4f6;
+    border-color: #9ca3af;
+}
+
+/* Responsive Stacking */
+@media (max-width: 960px) {
+    #home.container {
+        grid-template-columns: 1fr;
+    }
+}
