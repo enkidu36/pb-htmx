@@ -2,4 +2,4 @@
   (:require [hiccup2.core :as h]))
 
 (defn atp [request]
-  [:h2 "Annual Training Plan page contents"])
+  [:h2 "Annual Training Plan page content"])
