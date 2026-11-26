@@ -8,11 +8,14 @@
     --font-data: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
 body {
     background-color: var(--primary-bg-color);
     font-family: var(--font-ui);
-    border: none;
-    margin: 0;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -57,27 +60,34 @@ hr {
 .appHeader {
     color: black;
     background-color: gray;
-    height: 40px;
-    padding: 12px;
-    display: flex;
     font-size: 1.125rem;
     font-weight: 500;
-    justify-content: space-between;
-    align-items: center;
+    padding: 0 16px;
+  
 }
 
-header.appHeader img {
-    height: 100%;
-    object-fit: contain;
-}
-
-.navMenu {
+.appHeader ul {
+    width: 100%;
     display: flex;
-    gap: 36px;
-    cursor: pointer;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+
+}
+.appHeader li {
+    text-align: center;
+    list-style: none;
 }
 
-.navMenu .active {
+.appHeader li:nth-child(2) {
+    margin-left: auto;
+}
+
+.appHeader li:nth-child(5) {
+    margin-right: auto;
+}
+
+.active {
     color: white;
     font-weight: 600;
     text-decoration: underline;
@@ -102,7 +112,7 @@ header.appHeader img {
 	"info training performance";
     gap: 20px;
     // max-width: 1440px;    
-    padding: 20px 0;
+    padding: 0px 0;
     margin: 0 10px;
     box-sizing: border-box
 }

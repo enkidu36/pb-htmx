@@ -1,29 +1,13 @@
 (ns pb-htmx.layout
-  (:require [hiccup2.core :as h]))
+  (:require [hiccup2.core :as h]
+            [pb-htmx.icons :as icons]))
 
-(defn app-logo
-  "App logo"
-  []
-  [:img {:src "/public/images/logo.svg"}])
-
-(defn nav-menu
-  "Creates menu links for views & marks the active page menu item"
-  [title views]
-  [:nav.navMenu
-   (for [{:keys [name path]} views
-         :let [item (if (= name title)
-                      [:div.active]
-                      [:div])]]
-     (conj item {:hx-get path :hx-target "body" :hx-replace-url "true"} name))])
-
-(defn user-menu
-  "Menu links for Signed in User"
-  [name]
-  [:nav.userMenu
-   [:img {:src "/public/images/user-solid-full.svg"}]
-   name
-   (for [img ["message-regular-full.svg" "up-right-and-down-left-from-center-solid-full.svg"]]
-     [:img {:src (str "/public/images/" img)}])])
+(defn create-nav-li
+  "Create navigation page links. 
+   Checks the title and sets active class if matches link name. "
+  [path name title]
+  (let [list-item  (if (= name title) [:li.active] [:li])]
+    (conj list-item [:a {:hx-get path :hx-target "body" :hx-replace-url "true"} name])))
 
 (defn layout [views title content]
   (str
@@ -36,16 +20,21 @@
       [:title title]
       [:link {:rel "preconnect" :href "https://fonts.googleapis.com"}]
       [:link {:rel "preconnect" :href "https://fonts.gstatic.com" :crossorigin ""}]
-      [:link {:rel "stylesheet"
-              :href "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"}]
-      [:link {:rel "stylesheet"
-        :href (str "/public/css/styles.css")}]
-
+      [:link {:rel "stylesheet" :href "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"}]
+      [:link {:rel "stylesheet" :href "/public/css/style.css"}]
       [:script {:src "/public/htmx.min.js"}]
       [:script {:src "/public/script.js" :defer "true"}]]
      [:body
       [:header.appHeader
-       (app-logo)
-       (nav-menu title views)
-       (user-menu "Joseph Savoie")]
+       [:ul
+        [:li icons/app-logo]
+        (create-nav-li "/" "Home" title)
+        (create-nav-li "/calendar" "Calendar" title)
+        (create-nav-li "/dashboard" "Dashboard" title)
+        (create-nav-li "/atp" "ATP" title)
+        [:li icons/user]
+        [:li "Joseph Savoie"]
+        [:li icons/messages]
+        [:li icons/bell]
+        [:li icons/full-screen]]]
       content]])))

@@ -12,11 +12,6 @@
    [pb-htmx.views.atp :refer [atp]]
    [pb-htmx.views.sandbox :refer [sandbox]]))
 
-(def views [{:name "Home" :path "/"}
-            {:name "Calendar" :path "/calendar"}
-            {:name "Dashboard" :path "/dashboard"}
-            {:name "ATP" :path "/atp"}])
-
 (defn wrap-layout [handler title]
   (fn [request]
     (when-let [response (handler request)]

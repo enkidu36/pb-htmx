@@ -2,9 +2,12 @@
  :deps {org.clojure/clojure {:mvn/version "1.12.0"}
         ring/ring-jetty-adapter {:mvn/version "1.12.1"}
         ring-refresh/ring-refresh {:mvn/version "0.2.0"}
+        ring/ring-devel           {:mvn/version "1.12.1"}
         metosin/reitit-ring {:mvn/version "0.7.0"}
         metosin/reitit-middleware {:mvn/version "0.7.0"}
-        ring/ring-devel           {:mvn/version "1.12.1"}
-        hiccup/hiccup {:mvn/version "2.0.0-RC3"}}
+        hiccup/hiccup {:mvn/version "2.0.0-RC3"}
+        
+        com.github.seancorfield/next.jdbc {:mvn/version "1.4.72"}
+        org.postgresql/postgresql {:mvn/version "42.7.15"}}
  :aliases
  {:run {:main-opts ["-m" "pb-htmx.core"]}}}
