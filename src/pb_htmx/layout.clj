@@ -2,12 +2,23 @@
   (:require [hiccup2.core :as h]
             [pb-htmx.icons :as icons]))
 
-(defn create-nav-li
+(defn nav-li
   "Create navigation page links. 
    Checks the title and sets active class if matches link name. "
   [path name title]
   (let [list-item  (if (= name title) [:li.active] [:li])]
     (conj list-item [:a {:hx-get path :hx-target "body" :hx-replace-url "true"} name])))
+
+(defn user-menu [user-name]
+  [:li.dropdown
+   [:details.dropdown-details
+    [:summary.dropbtn
+     icons/user
+     [:span user-name]]
+    [:menu.dropdown-menu
+     [:li [:a {:hx-get "/settings" :hx-target "body" :hx-replace-url "true"} "Settings"]]
+     [:li [:a {:hx-get "/about" :hx-target "body" :hx-replace-url "true"} "About"]]
+     [:li [:a {:hx-post "/logout"} "Sign Out"]]]]])
 
 (defn layout [views title content]
   (str
@@ -25,16 +36,20 @@
       [:script {:src "/public/htmx.min.js"}]
       [:script {:src "/public/script.js" :defer "true"}]]
      [:body
-      [:header.appHeader
-       [:ul
-        [:li icons/app-logo]
-        (create-nav-li "/" "Home" title)
-        (create-nav-li "/calendar" "Calendar" title)
-        (create-nav-li "/dashboard" "Dashboard" title)
-        (create-nav-li "/atp" "ATP" title)
-        [:li icons/user]
-        [:li "Joseph Savoie"]
-        [:li icons/messages]
-        [:li icons/bell]
-        [:li icons/full-screen]]]
+      [:header.navbar
+       
+       [:nav
+        [:menu.nav-links
+         [:li [:a.logo {:href "#" :style {:margin-right "auto"}} icons/app-logo]]
+         (nav-li "/" "Home" title)
+         (nav-li "/calendar" "Calendar" title)
+         (nav-li "/dashboard" "Dashboard" title)
+         (nav-li "/atp" "ATP" title)
+
+         (user-menu "Joseph Savoie")
+
+         [:li icons/messages]
+         [:li icons/bell]
+         [:li icons/full-screen]]]]
+
       content]])))

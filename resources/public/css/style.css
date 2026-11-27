@@ -1,202 +1,323 @@
+/* ==========================================================================
+   1. Variables & Reset
+   ========================================================================== */
 :root {
-    /* Colors */
-    --primary-bg-color: #ffffff;
-    --divider-color: #dce0e8;
+  /* Colors */
+  --primary-bg-color: #ffffff;
+  --divider-color: #dce0e8;
+  --text-main: #111827;
+  --text-muted: #4b5563;
 
-    /* Typography */
-    --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-data: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Navigation */
+  --nav-height: 60px;
+  --nav-bg: gray; /* #1e293b */
+  --nav-surface: #334155;
+  --nav-surface-hover: #475569;
+  --nav-text: #f8fafc;
+  --nav-accent: #38bdf8;
+
+  /* Typography */
+  --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-data: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-* {
-    margin: 0px;
-    padding: 0px;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background-color: var(--primary-bg-color);
-    font-family: var(--font-ui);
-    -webkit-font-smoothing: antialiased;
+  background-color: var(--primary-bg-color);
+  color: var(--text-main);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Telemetry, Charts & Tables */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+hr {
+  width: 100%;
+  border: none;
+  border-top: 1px solid var(--divider-color);
+}
+
+/* ==========================================================================
+   2. Telemetry, Charts & Tables
+   ========================================================================== */
 table,
 .metric-card,
 .chart-container,
 .performance-section,
 .training-metrics {
-    font-family: var(--font-data);
-    font-variant-numeric: tabular-nums;
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
 }
 
 th {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 td {
-    font-size: 0.875rem;
-    font-weight: 400;
+  font-size: 0.875rem;
+  font-weight: 400;
 }
 
-/* Form controls don't inherit body font by default */
-button,
-input,
-select,
-textarea {
-    font-family: inherit;
+/* ==========================================================================
+   3. Header & Navigation
+   ========================================================================== */
+.navbar {
+  display: flex;
+  align-items: center;
+  height: var(--nav-height);
+  padding: 0 1.5rem;
+  background-color: var(--nav-bg);
+  color: var(--nav-text);
+
 }
 
-hr {
-    width: 100%;
-    border: none;
-    border-top: 1px solid var(--divider-color);
-    margin: 0;
-}
-
-/* Header & Navigation */
-.appHeader {
-    color: black;
-    background-color: gray;
-    font-size: 1.125rem;
-    font-weight: 500;
-    padding: 0 16px;
-  
-}
-
-.appHeader ul {
-    width: 100%;
+.navbar nav {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 16px;
-
-}
-.appHeader li {
-    text-align: center;
-    list-style: none;
+    width: 100%;
 }
 
-.appHeader li:nth-child(2) {
+.logo {
+  display: flex;
+  align-items: center;
+  color: var(--nav-text);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  list-style: none;
+  width: 100%;
+}
+
+.nav-links > li > a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  color: var(--nav-text);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.nav-links > li > a:hover {
+  color: var(--nav-accent);
+}
+
+.nav-links > li.active > a {
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 8px;
+}
+
+.nav-links > li:nth-child(2) {
     margin-left: auto;
 }
 
-.appHeader li:nth-child(5) {
+.nav-links > li:nth-child(5) {
     margin-right: auto;
 }
 
-.active {
-    color: white;
-    font-weight: 600;
-    text-decoration: underline;
-    text-underline-offset: 8px;
+/* ==========================================================================
+   4. User Dropdown Menu (<details>/<summary>)
+   ========================================================================== */
+.nav-links li.dropdown {
+  position: relative;
 }
 
-.userMenu {
-    display: flex;
-    align-items: center;
-    height: 60%;
-    gap: 12px;
-    font-size: 0.9375rem;
-    cursor: pointer;
+.dropdown-details summary {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
 }
 
-/* Main Dashboard Grid */
+.dropdown-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.nav-links > li > a,
+.dropbtn {
+  display: flex;
+  align-items: center;
+  padding: 0.45rem 0.85rem;
+  color: var(--nav-text);
+  border-radius: 6px;
+  gap: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-links > li > a:hover,
+.dropbtn:hover {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  text-decoration-thickness: 2px;
+}
+
+.dropbtn .arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.dropdown-details[open] .dropbtn .arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  right: 0;
+  min-width: 170px;
+  padding: 0.35rem 0;
+  background-color: var(--nav-surface);
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  list-style: none;
+  z-index: 1000;
+
+  /* Hidden state */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    visibility 0.25s ease;
+}
+
+.dropdown-details[open] .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 0.65rem 1rem;
+  color: var(--nav-text);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.dropdown-menu li a:hover {
+  background-color: var(--nav-surface-hover);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   5. Main Dashboard Grid (#home)
+   ========================================================================== */
 #home.container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas:
-	"head head head"
-	"info training performance";
-    gap: 20px;
-    // max-width: 1440px;    
-    padding: 0px 0;
-    margin: 0 10px;
-    box-sizing: border-box
-}
-
-#home.container > section {
-    background-color: #ffffff;
-    border: 1px solid var(--divider-color);
-    border-radius: 8px;
-    padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "head head head"
+    "info training performance";
+  gap: 20px;
+  margin: 20px 10px;
 }
 
 #home.container > header {
-    grid-area: head
+  grid-area: head;
 }
 
-/* Section Typography */
+#home.container > section {
+  background-color: var(--primary-bg-color);
+  border: 1px solid var(--divider-color);
+  border-radius: 8px;
+  padding: 16px;
+}
+
 #home h3 {
-    font-size: 1.125rem;
-    font-weight: 600;
-    margin: 0;
-    letter-spacing: -0.01em;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 #home h4 {
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: #4b5563;
-    margin: 8px 0 0 0;
+  margin-top: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
 }
 
 .section-subtitle {
-    font-size: 0.9375rem;
-    font-weight: 400;
-    color: #374151;
-    margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: #374151;
 }
 
-/* Info Section */
 #home-info {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 12px;
-    grid-area: info;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 12px;
+  grid-area: info;
 }
 
-/* Home today's training section */
 #home.container > section#todays-training {
-    grid-area: training;
+  grid-area: training;
 }
 
-/* Home Performance section */
 #home.container > #performance {
-    grid-area: performance;
+  grid-area: performance;
 }
 
+/* Buttons */
 .button-container {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .smallButtons {
-    padding: 6px 14px;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    background-color: #f9fafb;
-    border: 1px solid var(--divider-color);
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.15s ease, border-color 0.15s ease;
+  padding: 6px 14px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  background-color: #f9fafb;
+  border: 1px solid var(--divider-color);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .smallButtons:hover {
-    background-color: #f3f4f6;
-    border-color: #9ca3af;
+  background-color: #f3f4f6;
+  border-color: #9ca3af;
 }
 
-/* Responsive Stacking */
+/* ==========================================================================
+   6. Responsive Breakpoints
+   ========================================================================== */
 @media (max-width: 960px) {
-    #home.container {
-        grid-template-columns: 1fr;
-    }
+  #home.container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "head"
+      "info"
+      "training"
+      "performance";
+  }
 }

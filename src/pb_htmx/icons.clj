@@ -2,8 +2,8 @@
 
 (def app-logo
   [:svg#app-logo
-   {:width "64px",
-    :height "64px",
+   {:width "48px",
+    :height "48px",
     :viewBox "0 0 24 24",
     :fill "none",
     :xmlns "http://www.w3.org/2000/svg"}
@@ -21,7 +21,7 @@
 
 (def user
   [:svg
- {:xmlns "http://www.w3.org/2000/svg", :viewBox "0 0 640 640" :height "32px" :width "32px"}
+ {:xmlns "http://www.w3.org/2000/svg", :viewBox "0 0 640 640" :height "18px" :width "18px"}
  (comment
   "!Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.")
  [:path
@@ -30,7 +30,7 @@
 
 (def messages
   [:svg
- {:xmlns "http://www.w3.org/2000/svg", :viewBox "0 0 640 640" :height "32px" :width "32px"}
+ {:xmlns "http://www.w3.org/2000/svg", :viewBox "0 0 640 640" :height "18px" :width "18px"}
  (comment
   "!Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.")
  [:path
@@ -40,7 +40,7 @@
 
 (def full-screen
   [:svg
- {:xmlns "http://www.w3.org/2000/svg", :viewBox "0 0 640 640" :height "32px" :width "32px"}
+ {:xmlns "http://www.w3.org/2000/svg", :viewBox "0 0 640 640" :height "18px" :width "18px"}
  (comment
   "!Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.")
  [:path
@@ -49,7 +49,7 @@
 
 (def bell
   [:svg
- {:xmlns "http://www.w3.org/2000/svg", :viewBox "0 0 640 640" :height "32px" :width "32px"}
+ {:xmlns "http://www.w3.org/2000/svg", :viewBox "0 0 640 640" :height "18px" :width "18px"}
  (comment
   "!Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.")
  [:path
